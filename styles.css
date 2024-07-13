@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
-*{
-    font-family: 'Lora',serif;
+h1 {
+    font-weight: 300;
+    font-family: 'DM Serif Display',serif;
 }
 
 nav {
+    font-family: 'DM Serif Display',serif;
+    font-weight: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-image: linear-gradient(to bottom, #333, #313131);
     padding: 1rem;
     color: #fff;
     user-select: none;
@@ -22,7 +25,7 @@ nav {
 }
 
 .logo h1 {
-    font-family: 'Playfair Display','Garamond',serif;
+    font-family: 'DM Serif Display','Garamond',serif;
 }
   
 .logo img {
@@ -36,6 +39,17 @@ nav {
     padding: 0;
     display: flex;
 }
+
+.nav-links img {
+    margin-left:1.5vh;
+    height:2.5vh;
+}
+
+.nav-links img:hover {
+    transform:scale(1.1);
+    transition:0.1s;
+}
+
 
 .nav-links li {
     margin-right: 20px;
@@ -64,9 +78,6 @@ nav {
     margin-top: -350px;
 }
 
-.welcome{
-}
-
 .welcome img{
     height: 500px;
     width: 100%;
@@ -75,6 +86,7 @@ nav {
 }
 
 .welcome h1 {
+    font-family: 'DM Serif Display',serif;
     padding: 10px;
     border-radius: 3vh;
     background-color: #3333336c;
@@ -98,12 +110,17 @@ nav {
 .books{
     display:block;
     margin:auto;
-    width:81%;
+}
+
+.books hr{
+    display:block;
+    margin:auto;
+    width:81%
 }
 
 .books h1{
     text-align:center;
-    font-family: 'Playfair Display', serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 40px;
 }
 
@@ -111,16 +128,18 @@ nav {
     text-align:center;
     display:flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .inv-book{
-    width:27%;
+    background-image: linear-gradient(to bottom, white, #f8f8f8);
+    width:45vh;
     border-radius: 20px;
     margin:15px;
     padding: 10px;
     box-shadow: 0px 5px 0px 5px #00000018;
     transition:0.2s;
-    border: 1px solid #b9b9b9
+    border: 1px solid #e4e4e4
 }
 
 .inv-book img{
@@ -131,8 +150,13 @@ nav {
 
 .inv-book h3{
     color:brown;
-    font-family: "Playfair Display",sans-serif;
+    font-family: "DM Serif Display",sans-serif;
     font-size:25px;
+}
+
+.inv-book-info{
+    font-family: 'Lora',serif;
+    height:120px;
 }
 
 .inv-book:hover{
@@ -141,6 +165,7 @@ nav {
 }
 
 .read {
+    font-family: 'DM Serif Display',serif;
     border:none;
     width:70%;
     background-color: #3d35a7;
@@ -150,8 +175,118 @@ nav {
     padding:10px;
     box-shadow: 0 5px 0px 0px #2f2983;
     transition:0.2s;
+    margin-bottom:10px;
 }
 .read:hover {
     background-color: #4b41ce;
-    transition:0.2s;
+    transition:0.1s;
+}
+
+.read:active{
+    transform:translateY(5px);
+    box-shadow: 0 0px 0px 0px #2f2983;
+    transition:0.1s;
+}
+
+.articles{
+    display:block;
+    margin:auto;
+    width:81%
+}
+
+.articles h1{
+    text-align:center;
+    font-size: 40px;
+}
+
+.article-box{
+    display:flex;
+    box-shadow: 0px 0px 0px 10px #00000018;
+}
+
+.article-box img{
+    width:65vh;
+    height:auto;
+    object-fit: cover;
+}
+
+.article-cnt{
+    font-family: 'Lora','DM Serif Display', serif;
+    display:block;
+    margin:auto;
+    margin-right: 5vh;
+    margin-left: 5vh;
+}
+
+.article-cnt h2{
+    font-family: 'DM Serif Display','Lora', serif;
+    font-weight: 700;
+}
+
+.tags {
+    display: inline-flex;
+    gap:2vh;
+    margin-bottom:-2vh;
+}
+
+.tags h3{
+    font-style: italic;
+    background-color:#4b41ce;
+    padding:0.75vh;
+    border-radius:1vh;
+    color:white;
+}
+
+.tags h3:hover{
+    transform:scale(1.05);
+    transition:0.1s;
+}
+
+.article-cnt h4{
+    color:brown;
+    margin-top:-2vh;
+}
+
+.article-cnt a {
+    text-decoration: none;
+    color:black;
+    transition:0.1s;
+}
+
+.article-cnt a:hover{
+    color: brown;
+    text-decoration: underline;
+    transition: 0.2s;
+}
+
+footer {
+    margin-top:5vh;
+    font-family: 'Lora',serif;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .social-icons {
+    display:inline-flex;
+    gap:3vh;
+    margin: 10px 0;
+}
+
+footer .social-icons img {
+    height:5vh;
+}
+
+footer .credits {
+    margin: 10px 0;
+    font-size: 3vh;
+    font-style:italic;
+}
+
+footer a:hover {
+    color: #ffa500;
 }
