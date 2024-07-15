@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moroccan History Hub</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <img src="../static/assets/saadi-flag.svg" alt="Logo">
+                <h1>Moroccan History Hub</h1> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">ARTICLES</a></li>
+                <li><img src="../static/assets/search-icon.png"></li> 
+            </ul>
+        </nav>
+        <div class="welcome">
+            <img src="../static/assets/background.jpg">
+            <h1>Discover more about Morocco's fascinating history</h1> 
+        </div>
+        <section class="books">
+            <h1>Featured Books and Publications</h1>
+            <hr>
+            <br>
+            <div class="grid-books">
+                <div class="inv-book">
+                    <h3>Research</h3> 
+                    <img src="../static/assets/featured/thumbnail-fassis.PNG">
+                    <div class="inv-book-info">
+                        <h2>Fassis Merchants in Manchester</h2>
+                        <h4>BEKKAOUI Khalid, 2016</h4>
+                    </div>
+                    <a href="http://www.fldm.usmba.ac.ma/wp-content/uploads/2020/03/AN433-G1-BEKKAOUI-MERCHANTS-IN-MANCHESTER.pdf"><button class="read">Read</button></a>
+                </div>
+                <div class="inv-book">
+                    <h3>Poster</h3> 
+                    <img src="../static/assets/featured/unehistoiredumaroc.jpg">
+                    <div class="inv-book-info">
+                        <h2>"Une Histoire Du Maroc"</h2>
+                        <h4>SISCU Michaël</h4>
+                    </div>
+                    <button class="read" href="#">Read</button>
+                </div>
+                <div class="inv-book">
+                    <h3>Book</h3> 
+                    <img src="../static/assets/featured/thecrusadethrougharabeyes.jpg">
+                    <div class="inv-book-info">
+                        <h2>The Crusades Through Arab Eyes</h2>
+                        <h4>MAALOUF Amin, 1983</h4>
+                    </div>
+                    <a href="publications/Amin Malouf - The Crusades through Arab Eyes.pdf"><button class="read">Read</button></a>
+                </div>
+            </div>
+        </section>
+        <section class="articles">
+            <h1>Our articles</h1>
+            <hr>
+            <div class="article-grid">
+
+                <div class="article-box">
+                    <img src="../static/assets/articles/agriculture.jpg">
+                    <div class="article-cnt">
+                        <div class="tags">
+                            <h3>Agriculture</h3>
+                            <h3>19th Century</h3>
+                        </div>
+                        <h2><a href="publications/agriculture_in_morocco.html">Agriculture in Morocco in the 19th century</a></h2>
+                        <h4>Samy Y.</h4>
+                        <p>In the 19th century, agriculture in Morocco underwent significant changes, marked by increased irrigation efforts, crop diversification, and the introduction of new farming practices. Despite facing challenges such as droughts, civil wars and limited transportation, it continued to evolve up until the advent of the French Protectorate in 1912...</p>
+                        <a href="publications/agriculture_in_morocco.html"><button class="article-read">Read</button></a>
+                    </div>
+                </div> 
+
+                <div class="article-box">
+                    <img src="../static/assets/articles/collaboration.jpg">
+                    <div class="article-cnt">
+                        <div class="tags">
+                            <h3>Colonialism</h3>
+                            <h3>France</h3>
+                            <h3>Spain</h3>
+                            <h3>19th Century</h3>
+                        </div>
+                        <h2><a href="publications/precolonial_collaboration.html">Instances of precolonial moroccan collaborators with European colonial authorities</a></h2>
+                        <h4>Samy Y.</h4>
+                        <p>During the late 19th century, many tribal and feudal lords in Morocco sought to collaborate with European colonial authorities to defend their local power against the increasingly interventionnist and reformist Makhzen...</p>
+                        <a href="publications/precolonial_collaboration.html"><button class="article-read">Read</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="articles.html" style="text-decoration: none;"><button class="more-articles">Discover more ></button></a>
+        </section>
+        <footer>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><img src="../static/assets/facebook-logo.png"></a>
+                <a href="#" aria-label="YouTube"><img src="../static/assets/youtube-logo.png"></a>
+            </div>
+            <div class="credits">
+                Moroccan History Hub, 2024.
+            </div>
+        </footer>
+    </body>
+</html>
