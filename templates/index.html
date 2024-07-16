@@ -62,36 +62,22 @@
             <h1>Our articles</h1>
             <hr>
             <div class="article-grid">
-
-                <div class="article-box">
-                    <img src="../static/assets/articles/agriculture.jpg">
-                    <div class="article-cnt">
-                        <div class="tags">
-                            <h3>Agriculture</h3>
-                            <h3>19th Century</h3>
+                {% for article_id, article in articles_data.items() %}
+                    <div class="article-box">
+                        <img src="{{ article['image'] }}">
+                        <div class="article-cnt">
+                            <div class="tags">
+                                {% for tag in article['tags'] %}
+                                    <h3>{{ tag }}</h3>
+                                {% endfor %}
+                            </div>
+                            <h2><a href="{{ article_id }}">{{ article['title'] }}</a></h2>
+                            <h4>{{ article['author'] }}</h4>
+                            <p>{{ article['preview'] }}</p>
+                            <a href="{{ article_id }}"><button class="article-read">Read</button></a>
                         </div>
-                        <h2><a href="publications/agriculture_in_morocco.html">Agriculture in Morocco in the 19th century</a></h2>
-                        <h4>Samy Y.</h4>
-                        <p>In the 19th century, agriculture in Morocco underwent significant changes, marked by increased irrigation efforts, crop diversification, and the introduction of new farming practices. Despite facing challenges such as droughts, civil wars and limited transportation, it continued to evolve up until the advent of the French Protectorate in 1912...</p>
-                        <a href="publications/agriculture_in_morocco.html"><button class="article-read">Read</button></a>
                     </div>
-                </div> 
-
-                <div class="article-box">
-                    <img src="../static/assets/articles/collaboration.jpg">
-                    <div class="article-cnt">
-                        <div class="tags">
-                            <h3>Colonialism</h3>
-                            <h3>France</h3>
-                            <h3>Spain</h3>
-                            <h3>19th Century</h3>
-                        </div>
-                        <h2><a href="publications/precolonial_collaboration.html">Instances of precolonial moroccan collaborators with European colonial authorities</a></h2>
-                        <h4>Samy Y.</h4>
-                        <p>During the late 19th century, many tribal and feudal lords in Morocco sought to collaborate with European colonial authorities to defend their local power against the increasingly interventionnist and reformist Makhzen...</p>
-                        <a href="publications/precolonial_collaboration.html"><button class="article-read">Read</button></a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <a href="articles.html" style="text-decoration: none;"><button class="more-articles">Discover more ></button></a>

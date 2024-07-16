@@ -1,11 +1,79 @@
 from flask import Flask, render_template
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import os
+import re
+
+articles_data = {}
+
+html_files = [f for f in os.listdir('templates/publications') if f.endswith('.html')]
+
+options = webdriver.ChromeOptions()
+options.add_argument('--headless="new"')
+driver = webdriver.Chrome(options=options)
+for g in html_files:
+    script_directory = os.path.dirname(os.path.realpath(__file__))
+    print(script_directory)
+    script_directory = script_directory.replace("\\","/")
+    full_url = f"{script_directory}/templates/publications/{g}"
+    driver.get(full_url)
+    try:
+        #title
+        element_title = driver.find_element(By.ID, "title")
+        element_title_text = element_title.text
+        #author
+        element_author = driver.find_element(By.ID, "author")
+        element_author_text = element_author.text
+        #tags
+        element_tags = driver.find_element(By.ID, "tags")
+        element_tags_text = element_tags.text
+        element_tags_text = element_tags_text.split(',')
+        #preview
+        element_preview = driver.find_element(By.ID, "preview")
+        element_preview_text = element_preview.text
+        #img
+        element_img = driver.find_element(By.ID, "article-thumbnail")
+        element_img_src = element_img.get_attribute("src")
+
+        match = re.search(r"static/.*", element_img_src)
+        if match:
+            element_img_src_final = match.group()
+        else:
+            element_img_src_final = ""
+
+        articles_data[g] = {}
+        articles_data[g]["title"] = element_title_text
+        articles_data[g]["author"] = element_author_text
+        articles_data[g]["tags"] = element_tags_text
+        articles_data[g]["preview"] = element_preview_text
+        articles_data[g]["image"] = element_img_src_final
+    except NoSuchElementException:
+        print(f"This page is incomplete: {full_url}")
+        continue  # Skip to the next page
+
+driver.quit()
+
+print(articles_data)
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', css="static/styles.css")
+    return render_template('index.html', css="static/styles.css", articles_data=articles_data)
+
+@app.route('/articles')
+def articles():
+    return render_template('articles.html', css="static/styles.css")
+
+@app.route('/secret-admin-panel')
+def admin():
+    return render_template('admin.html', css="static/admin.css")
+
+for x in html_files:
+    def route_function():
+        return render_template(f'{x}', css='static/styles.css')
+    setattr(app, f'route_{x}', route_function)
 
 if __name__ == '__main__':
     app.run(debug=True)
