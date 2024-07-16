@@ -14,7 +14,6 @@ options.add_argument('--headless="new"')
 driver = webdriver.Chrome(options=options)
 for g in html_files:
     script_directory = os.path.dirname(os.path.realpath(__file__))
-    print(script_directory)
     script_directory = script_directory.replace("\\","/")
     full_url = f"{script_directory}/templates/publications/{g}"
     driver.get(full_url)
@@ -54,9 +53,8 @@ for g in html_files:
 
 driver.quit()
 
-print(articles_data)
-
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route('/')
 def index():
@@ -66,9 +64,13 @@ def index():
 def articles():
     return render_template('articles.html', css="static/styles.css")
 
-@app.route('/secret-admin-panel')
+@app.route('/admin')
 def admin():
     return render_template('admin.html', css="static/admin.css")
+
+@app.route('/admin/create')
+def create():
+    return render_template("create.html", css="static/admin.css")
 
 
 def generate_article_route(filename):

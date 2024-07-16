@@ -13,3 +13,11 @@ These are non-academic user-made articles covering a variety of subjects.
 ## Admin panel
 
 The admin panel is accessible to a small number of contributors, and they can use it to write articles using Markdown, save them as drafts, plan and publish them.
+
+## To-Do list
+
+* New Logo
+* Admin User
+* Articles saving
+* Draft articles
+* Search bar
