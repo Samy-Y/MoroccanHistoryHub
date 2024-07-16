@@ -4,28 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Moroccan History Hub</title>
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles.css">
     
     </head>
     <body>
         <nav>
             <div class="logo">
-                <img src=".../static/assets/saadi-flag.svg" alt="Logo">
+                <img src="../assets/saadi-flag.svg" alt="Logo">
                 <h1>Moroccan History Hub</h1> 
             </div>
             <ul class="nav-links">
-                <li><a href="../index.html">HOME</a></li>
+                <li><a href="{{ url_for('index')}}">HOME</a></li>
                 <li><a href="../about.html">ABOUT</a></li>
                 <li><a href="#">ARTICLES</a></li>
             </ul>
         </nav>
-        <img src=".../static/assets/work-in-progress.jpg">
-        <h1>Sorry, this page is still under construction</h1>
-        <h2>Work in progress, you can go away</h2>
+        <div class="articletxt">
+            <div class="infobox">
+                <h2>This was in part written on Wikipedia by <a href="en.wikipedia.org/wiki/User:Samcarf3">Samcarf3 (me)</a>"</h2>
+            </div>
+            <div class="main-article">
+                <h2 id="title">Precolonial collaborationnist with European colonial authorities</h2>
+                <h3 id="author">Samy Y.</h3>
+                <p id="tags">Colonialism,Imperialism,Treason</p>
+                <p id="preview">In the 19th century, agriculture in Morocco underwent significant changes, marked by increased irrigation efforts, crop diversification, and the introduction of new farming practices. Despite facing challenges such as droughts, civil wars and limited transportation, it continued to evolve up until the advent of the French Protectorate in 1912...</p>
+                <img id="article-thumbnail" src="../../static/assets/articles/agriculture.jpg">
+                <p>In pre-colonial Morocco, the predominant economic structure was centered around a rural subsistence model. Local farms were commonly held collectively, known as bled el jemâa. Established customs regulated land usage and distribution among families. Despite economic setbacks occurring periodically, civil conflicts at both national and local levels and the primitive tools employed, there remained a significant emphasis on soil exploitation and agriculture constituted the primary occupation for the majority of rural inhabitants. Numerous lands became contested territories among various groups and tribes, which sometimes prompted the Makhzen to intervene in order to settle the disputes.</p>
+                <p>Pierre Tralle, a French prisoner who also participated in the construction of Meknes over a seven-year period until 1700, highlighted in his report on the Moroccan situation the fertility of the land which he considered to be adapted to producing high-quality crops.</p>
+                <p>Despite opening to trade in the late 19th century, Morocco faced limitations due to inadequate agricultural surplus and the antiquated transportation system, which hindered commercial activities. Foreign land ownership was largely unattainable before colonization, even though European powers secured legal exceptions allowing land speculation around major harbors through treaties such as the Treaty of Madrid in 1880 and the Treaty of Algeciras in 1906.</p>
+                <p>During the latter half of the 19th century, there was an increased interest on irrigation and agricultural activities, particularly under the reign of Mohammed IV, sparked when he was still the caliph of Marrakech. This interest lead to the creation of various water sources in the region, and the construction of a canal originating from Wadi N'Fiss [fr], as well as another canal named Fitout River which transported water from Tastaout to the plains encompassing Zemrane, Rahamna, and Sraghna. Throughout the 19th century, the Chaouia region rose as an important grain and livestock exporting hub through the port of Anfa, despite governmental policies restricting exports.</p>
+                <p>An important shift in the types crops cultivated was observed in many regions prior to the establishment of the protectorate. The cultivation of olive trees, once prevalent across the coastal plains along the Atlantic coastal regions and the Rif, significantly declined.</p>
+                <p>The Atlantic plains were renowned for the quality of their wheat, barley, and abundant vineyards, while vegetable cultivation was primarily concentrated near urban centers. Morocco also produced oranges, almonds, walnuts and figs. The introduction of new crops, such as aloe vera from the Americas, and potatoes from Europe, affected agriculture in Morocco. During the 19th century, the cultivation of plants like henna, flax, hashish, and turmeric gained prominence. Forested areas retained their original situation and composition, comprising oak and argan trees, and other species like willows, junipers, and pines.</p>
+                <h3>Sources:</h3>
+                <ul>
+                    <li>Salem, Ariane (2021). The Negative Impacts of Colonization on the Local Population: Evidence from Morocco</li> 
+                    <li>Harakat, Ibrahim (2016). المغرب عبر التاريخ ج3 (in Arabic). دار الرشاد الحديثة.</li> 
+                </ul>
+            </div>
+        </div>
         <footer>
             <div class="social-icons">
-                <a href="#" aria-label="Facebook"><img src=".../static/assets/facebook-logo.png"></a>
-                <a href="#" aria-label="YouTube"><img src=".../static/assets/youtube-logo.png"></a>
+                <a href="#" aria-label="Facebook"><img src="../assets/facebook-logo.png"></a>
+                <a href="#" aria-label="YouTube"><img src="../assets/youtube-logo.png"></a>
             </div>
             <div class="credits">
                 Moroccan History Hub, 2024.

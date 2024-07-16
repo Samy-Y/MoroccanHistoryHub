@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -70,10 +70,22 @@ def articles():
 def admin():
     return render_template('admin.html', css="static/admin.css")
 
+
+def generate_article_route(filename):
+    def render_article():
+        if filename in html_files:
+            return render_template(f'publications/{filename}', css="static/styles.css")
+        else:
+            abort(404)
+    return render_article
+
+# Dynamically create routes for each HTML file
 for x in html_files:
-    def route_function():
-        return render_template(f'{x}', css='static/styles.css')
-    setattr(app, f'route_{x}', route_function)
+    route = f"/articles/{x}"
+    endpoint = f"article_{x.replace('.html', '')}"
+    app.add_url_rule(route, endpoint, generate_article_route(x))
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#reload comment : aa
