@@ -42,7 +42,7 @@ def convert_markdown(txt):
         elif "* " in x[0:2]:
             a = x.replace("* ","<li>")
             line_txt[i] = a + "</li>"
-        elif x.startswith("- "):
+        elif "- " in x[0:2]:
             a = x.replace("- ","<li>")
             line_txt[i] = a + "</li>"
 
@@ -68,3 +68,9 @@ def convert_markdown(txt):
             line_txt[i] = x
 
     return "\n".join(line_txt)
+
+def format_article(html):
+    while "<h2" in html:
+        html = html.replace("<h2",'<h2 id="title"')
+
+print(convert_markdown(ab))

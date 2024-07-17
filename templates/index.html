@@ -62,21 +62,23 @@
             <h1>Our articles</h1>
             <hr>
             <div class="article-grid">
-                {% for article_id, article in articles_data.items() %}
-                    <div class="article-box">
-                        <img src="{{ article['image'] }}">
-                        <div class="article-cnt">
-                            <div class="tags">
-                                {% for tag in article['tags'] %}
-                                    <h3>{{ tag }}</h3>
-                                {% endfor %}
+                {% for i in range(4) %}
+                    {% for article_id, article in articles_data.items() %}
+                        <div class="article-box">
+                            <img src="{{ article['image'] }}">
+                            <div class="article-cnt">
+                                <div class="tags">
+                                    {% for tag in article['tags'] %}
+                                        <h3>{{ tag }}</h3>
+                                    {% endfor %}
+                                </div>
+                                <h2><a href="{{ article_id }}">{{ article['title'] }}</a></h2>
+                                <h4>{{ article['author'] }}</h4>
+                                <p>{{ article['preview'] }}</p>
+                                <a href="/articles/{{ article_id }}"><button class="article-read">Read</button></a>
                             </div>
-                            <h2><a href="{{ article_id }}">{{ article['title'] }}</a></h2>
-                            <h4>{{ article['author'] }}</h4>
-                            <p>{{ article['preview'] }}</p>
-                            <a href="/articles/{{ article_id }}"><button class="article-read">Read</button></a>
                         </div>
-                    </div>
+                    {% endfor %}
                 {% endfor %}
             </div>
 

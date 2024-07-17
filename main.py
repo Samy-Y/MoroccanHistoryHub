@@ -1,9 +1,10 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort,request,jsonify
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import os
 import re
+import json
 
 articles_data = {}
 
@@ -49,7 +50,7 @@ for g in html_files:
         articles_data[g]["image"] = element_img_src_final
     except NoSuchElementException:
         print(f"This page is incomplete: {full_url}")
-        continue  # Skip to the next page
+        continue  #skip
 
 driver.quit()
 
@@ -68,10 +69,33 @@ def articles():
 def admin():
     return render_template('admin.html', css="static/admin.css")
 
-@app.route('/admin/create')
-def create():
-    return render_template("create.html", css="static/admin.css")
+type_save = ""
 
+@app.route('/admin/create', methods=["GET","POST"])
+def create():
+    if request.method == "POST":
+        if type_save == "draft":
+            title = str(request.form.get('title-input'))
+            author = str(request.form.get('author-input'))
+            tags = str(request.form.get('tags-input'))
+            image = str(request.form.get('img-input'))
+            content = str(request.form.get('content-input'))
+            article_draft = {
+                "type":"draft",
+                'title': title,
+                'author': author,
+                'tags': tags,
+                'image': image,
+                'content': content
+            }
+            jsonsave = open(title+".json","w")
+            json.dump(article_draft, jsonsave, indent=4)
+            jsonsave.close()
+            return render_template('admin.html', css="static/admin.css")
+        elif type_save == "publish":
+                    print("it works")
+    else:
+        return render_template("create.html", css="static/admin.css", type_save=type_save)
 
 def generate_article_route(filename):
     def render_article():
@@ -90,4 +114,4 @@ for x in html_files:
 if __name__ == '__main__':
     app.run(debug=True)
 
-#reload comment : aa
+#reload comment : aa (war crime)

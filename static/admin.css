@@ -3,21 +3,20 @@
 }
 
 body {
-    background-color: #ccc;
+    background-color: #eeeeee;
 }
 
 .admin-header {
     display: flex;
     justify-content: center;
     height:15vh;
-    background-image: linear-gradient(to bottom, #aaa, #ccc);
+    background-color: #333333a6;
 }
 
 .admin-header h1 {
     display: block;
     margin:auto;
     padding:3vh;
-    background-color: #33333372;
     text-align: center;
     color:white;
 }
@@ -30,7 +29,6 @@ body {
 }
 
 .create button {
-    
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -40,7 +38,6 @@ body {
     color: #202223;
     background: #ffffff;
     border-radius: 4px;
-    font-weight: 500;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
     font-size: 20px;
     min-height: 40vh;
@@ -50,4 +47,55 @@ body {
 .create button:hover {
     background: #f6f6f7;
     outline: 1px solid transparent;
+}
+
+.create button:active {
+    background-image: linear-gradient(to top, #efefef, #e3e3e3);
+}
+
+.write-article textarea {
+    display: block;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+    resize: none;
+    border:none;
+    padding:1vh;
+    border-radius: 1vh;
+    border: 1px solid #babfc3;
+}
+
+#cnt{
+    height:50vh;
+    margin-bottom: 3vh;
+}
+
+.ctrlbtns {
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+}
+
+.ctrlbtns button {
+    border:none;
+    border-radius: 2vh;
+    min-height:10vh;
+    width: 40vh;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #babfc3;
+    padding: 11px 24px;
+    color: #202223;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+    font-size: 20px;
+}
+
+.ctrlbtns button:hover {
+    background: #f0f0f0;
+}
+
+.ctrlbtns button:active {
+    background-image: linear-gradient(to top, #efefef, #cbcbcb);
 }
