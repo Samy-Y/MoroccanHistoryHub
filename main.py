@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort,request,jsonify
+from flask import Flask, render_template, abort,request,flash,redirect,session
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -6,6 +6,8 @@ import os
 import re
 import json
 import converter
+import sqlite3
+from functools import wraps
 
 articles_data = {}
 
@@ -58,6 +60,15 @@ driver.quit()
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            flash('You need to be logged in to access this page.', 'danger')
+            return redirect('login')
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/')
 def index():
     return render_template('index.html', css="static/styles.css", articles_data=articles_data)
@@ -66,15 +77,28 @@ def index():
 def articles():
     return render_template('articles.html', css="static/styles.css")
 
-@app.route('/login')
+@app.route('/login', methods=["GET","POST"])
 def login():
-    return render_template('login.html', css="static/admin.css")
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        conn = sqlite3.connect('users.db')
+        user = conn.execute('SELECT * FROM users WHERE USERNAME = ? AND PASSWORD = ?', (username, password)).fetchone()
+        conn.close()
+        
+        if user:
+            flash('Login successful!', 'success')
+            return redirect('admin')
+        else:
+            flash('Invalid username or password', 'danger')
+            return redirect('/')
+    else:    
+        return render_template('login.html', css="static/admin.css")
 
 @app.route('/admin')
+@login_required
 def admin():
     return render_template('admin.html', css="static/admin.css")
-
-type_save = ""
 
 @app.route('/admin/create', methods=["GET","POST"])
 def create():
@@ -95,7 +119,7 @@ def create():
                 'preview': preview,
                 'content': content
             }
-            jsonsave = open(title+".json","w")
+            jsonsave = open("./templates/publications/dbinfo"+title+".json","w")
             json.dump(article_draft, jsonsave, indent=4)
             jsonsave.close()
             return render_template("create.html", css="static/admin.css")
@@ -115,7 +139,7 @@ def create():
                 'preview': preview,
                 'content': content
             }
-            jsonsave = open(title+".json","w")
+            jsonsave = open("./templates/publications/dbinfo" + title+".json","w")
             json.dump(article_draft, jsonsave, indent=4)
             jsonsave.close()
             html_article = open("./templates/publications/"+title+".html","w")
@@ -138,7 +162,9 @@ for x in html_files:
     endpoint = f"article_{x.replace('.html', '')}"
     app.add_url_rule(route, endpoint, generate_article_route(x))
 
+app.config["SECRET_KEY"] = "Something Unique and Secret"
+
 if __name__ == '__main__':
     app.run(debug=True)
 
-#reload comment : aa (war crime
+#reload comment : aa (war crime)

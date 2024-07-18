@@ -101,11 +101,26 @@ nav {
     color: white;
     user-select: none;
     transition: 0.2s;
+    animation: MoveDown 0.75s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes MoveDown{
+    from{
+        top:20%;
+        opacity: 0%;
+
+    }
+    to{
+        top:50%;
+        opacity: 100%;
+    }
 }
 
 .welcome h1:hover {
     transition: 0.2s;
-    font-size:62px;
+    transform: translate(-47.5%,-50%);
+    scale: 1.05;
 }
 
 .books{
