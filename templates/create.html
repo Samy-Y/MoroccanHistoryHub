@@ -9,7 +9,7 @@
     
     </head>
     <body>
-        <h1 style="text-align: center;">Create New Article</h1>
+        <h1 style="text-align: center;">Write a new article</h1>
         <form method = "POST" autocomplete="off">
             <div class="write-article">
                 <textarea type="text" name="title-input" placeholder="Title"></textarea>
@@ -19,8 +19,8 @@
                 <textarea type="text" name="content-input" id="cnt" placeholder="Content"></textarea>
             </div>
             <div class="ctrlbtns">
-                <button>{% type_save="draft" %} 📥 Save as Draft</button>
-                <button>{% type_save="publish" %}🗞️ Publish</button>
+                <button>📥 Save as Draft</button>
+                <button>🗞️ Publish</button>
                 <button type="submit">🗑️ Delete</button>
                 <a href="{{url_for('admin')}}"><button>🏠 Return Home</button></a>
             </div>

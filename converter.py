@@ -1,28 +1,3 @@
-ab = """# The Humble Potato 🥔
-
-Potatoes are one of the most versatile and widely consumed vegetables worldwide. Whether mashed, fried, or baked, they find their way into countless dishes. Let's explore some interesting facts about this humble tuber:
-
-## Origins and History
-
-- **Origin**: Potatoes (Solanum tuberosum) originated in the Andes region of South America, where they were cultivated by indigenous peoples thousands of years ago.
-- **Introduction to Europe**: Spanish explorers brought potatoes to Europe in the 16th century. Initially met with suspicion, they eventually gained popularity due to their nutritional value and ability to thrive in various climates.
-
-## Culinary Uses
-
-- **Mashed Potatoes**: Creamy, __buttery__ mashed potatoes are a staple side dish in many cuisines.
-- **French Fries**: Thinly sliced and deep-fried, French fries are beloved by people of all ages.
-- **Baked Potatoes**: Baking potatoes in the oven results in a crispy skin and fluffy interior.
-- **Potato Salad**: A refreshing *salad* made with boiled potatoes, herbs, and dressing.
-
-## Nutritional Benefits
-
-- Potatoes are an excellent source of vitamin C, potassium, and dietary fiber.
-- They are naturally gluten-free and low in fat.
-- However, avoid consuming green or sprouted potatoes, as they can contain toxic compounds.
-
-Remember to enjoy your potatoes without moderation! 🌟
-"""
-
 def convert_markdown(txt):
     line_txt = txt.split("\n")
 
@@ -45,6 +20,14 @@ def convert_markdown(txt):
         elif "- " in x[0:2]:
             a = x.replace("- ","<li>")
             line_txt[i] = a + "</li>"
+        # CUSTOM
+
+        elif x.startswith("§TAGS§ "):
+            a = x.replace("§TAGS§ ",'<p id="tags">')
+            line_txt[i] = a + "</p>"
+        elif x.startswith("§PREVIEW§ "):
+            a = x.replace("§PREVIEW§ ",'<p id="preview">')
+            line_txt[i] = a + "</p>"
 
     for i,x in enumerate(line_txt):
         if "**" in x:
@@ -71,6 +54,6 @@ def convert_markdown(txt):
 
 def format_article(html):
     while "<h2" in html:
-        html = html.replace("<h2",'<h2 id="title"')
-
-print(convert_markdown(ab))
+        html = html.replace("<h2",'<h2 id="title"',1)
+    while "<h3" in html:
+        html = html.replace("<h3",'<h3 id="author"',1)

@@ -74,28 +74,25 @@ type_save = ""
 @app.route('/admin/create', methods=["GET","POST"])
 def create():
     if request.method == "POST":
-        if type_save == "draft":
-            title = str(request.form.get('title-input'))
-            author = str(request.form.get('author-input'))
-            tags = str(request.form.get('tags-input'))
-            image = str(request.form.get('img-input'))
-            content = str(request.form.get('content-input'))
-            article_draft = {
-                "type":"draft",
-                'title': title,
-                'author': author,
-                'tags': tags,
-                'image': image,
-                'content': content
-            }
-            jsonsave = open(title+".json","w")
-            json.dump(article_draft, jsonsave, indent=4)
-            jsonsave.close()
-            return render_template('admin.html', css="static/admin.css")
-        elif type_save == "publish":
-                    print("it works")
+        title = str(request.form.get('title-input'))
+        author = str(request.form.get('author-input'))
+        tags = str(request.form.get('tags-input'))
+        image = str(request.form.get('img-input'))
+        content = str(request.form.get('content-input'))
+        article_draft = {
+            "type":"draft",
+            'title': title,
+            'author': author,
+            'tags': tags,
+            'image': image,
+            'content': content
+        }
+        jsonsave = open(title+".json","w")
+        json.dump(article_draft, jsonsave, indent=4)
+        jsonsave.close()
+        return render_template('admin.html', css="static/admin.css")
     else:
-        return render_template("create.html", css="static/admin.css", type_save=type_save)
+        return render_template("create.html", css="static/admin.css")
 
 def generate_article_route(filename):
     def render_article():
