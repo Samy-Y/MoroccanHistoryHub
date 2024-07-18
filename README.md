@@ -1,23 +1,27 @@
 # Moroccan History Hub
 
-A simple student-made website to discover more information about the History of Morocco.
+Moroccan History Hub is a simple student-made website to discover the History of Morocco. This repository contains the source code and content for the website.
 
-## Book recommendations
+## Features
 
-The website provides to the user many book and researches recommendations. These serve as raw sources for future documentation and writing.
+* **Book Recommendations:** A curated list of books and research papers that serve as primary sources for future documentation and writing.
+* **Articles:** Pages with varying degrees of depth on many aspects of Moroccan history.
 
-## Articles
+## Goals
 
-These are non-academic user-made articles covering a variety of subjects.
+* To provide a centralized hub for Moroccan history enthusiasts to access reliable and accurate information.
+* To encourage research and writing on Moroccan history by students and scholars alike.
+* To foster a community of like-minded individuals interested in exploring and preserving Moroccan cultural heritage.
 
-## Admin panel
+## Acknowledgments
 
-The admin panel is accessible to a small number of contributors, and they can use it to write articles using Markdown, save them as drafts, plan and publish them.
+This project is a student initiative and is not affiliated with any institution or organization. The accuracy of the information provided may be affected.
+We acknowledge the contributions of the many scholars and researchers who have written about Moroccan history, and we strive to provide accurate and respectful representations of their work.
 
 ## To-Do list
 
 * New Logo
 * Admin User
-* Articles saving
+* Article database
 * Draft articles
 * Search bar

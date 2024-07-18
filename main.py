@@ -5,6 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 import os
 import re
 import json
+import converter
 
 articles_data = {}
 
@@ -65,6 +66,10 @@ def index():
 def articles():
     return render_template('articles.html', css="static/styles.css")
 
+@app.route('/login')
+def login():
+    return render_template('login.html', css="static/admin.css")
+
 @app.route('/admin')
 def admin():
     return render_template('admin.html', css="static/admin.css")
@@ -74,23 +79,48 @@ type_save = ""
 @app.route('/admin/create', methods=["GET","POST"])
 def create():
     if request.method == "POST":
-        title = str(request.form.get('title-input'))
-        author = str(request.form.get('author-input'))
-        tags = str(request.form.get('tags-input'))
-        image = str(request.form.get('img-input'))
-        content = str(request.form.get('content-input'))
-        article_draft = {
-            "type":"draft",
-            'title': title,
-            'author': author,
-            'tags': tags,
-            'image': image,
-            'content': content
-        }
-        jsonsave = open(title+".json","w")
-        json.dump(article_draft, jsonsave, indent=4)
-        jsonsave.close()
-        return render_template('admin.html', css="static/admin.css")
+        if request.form['action'] == "📥 Save as Draft":
+            title = str(request.form.get('title-input'))
+            author = str(request.form.get('author-input'))
+            tags = str(request.form.get('tags-input'))
+            image = str(request.form.get('img-input'))
+            preview = str(request.form.get('preview-input'))
+            content = str(request.form.get('content-input'))
+            article_draft = {
+                "type":"draft",
+                'title': title,
+                'author': author,
+                'tags': tags,
+                'image': image,
+                'preview': preview,
+                'content': content
+            }
+            jsonsave = open(title+".json","w")
+            json.dump(article_draft, jsonsave, indent=4)
+            jsonsave.close()
+            return render_template("create.html", css="static/admin.css")
+        elif request.form['action'] == "🗞️ Publish":
+            title = str(request.form.get('title-input'))
+            author = str(request.form.get('author-input'))
+            tags = str(request.form.get('tags-input'))
+            image = str(request.form.get('img-input'))
+            preview = str(request.form.get('preview-input'))
+            content = str(request.form.get('content-input'))
+            article_draft = {
+                "type":"published",
+                'title': title,
+                'author': author,
+                'tags': tags,
+                'image': image,
+                'preview': preview,
+                'content': content
+            }
+            jsonsave = open(title+".json","w")
+            json.dump(article_draft, jsonsave, indent=4)
+            jsonsave.close()
+            html_article = open("./templates/publications/"+title+".html","w")
+            html_article.write(converter.format_input(article_draft))
+            return render_template("admin.html", css="static/admin.css")
     else:
         return render_template("create.html", css="static/admin.css")
 
@@ -111,4 +141,4 @@ for x in html_files:
 if __name__ == '__main__':
     app.run(debug=True)
 
-#reload comment : aa (war crime)
+#reload comment : aa (war crime

@@ -52,8 +52,62 @@ def convert_markdown(txt):
 
     return "\n".join(line_txt)
 
-def format_article(html):
-    while "<h2" in html:
-        html = html.replace("<h2",'<h2 id="title"',1)
-    while "<h3" in html:
-        html = html.replace("<h3",'<h3 id="author"',1)
+def format_input(rawdict):
+    title = "<h2 id='title'>"
+    author = "<h3 id='author'> "
+    tags = "<p id='tags'>"
+    preview = "<p id='preview'>"
+    img = '<img id="article-thumbnail"'
+    content = ""
+
+    title += rawdict["title"] + "</h2>"
+    author += rawdict['author'] + "</h3>"
+    tags += rawdict["tags"] + "</p>"
+    img += " src='" + rawdict['image'] + "'>"
+    preview += rawdict['preview'] + "</p>"
+    content += convert_markdown(rawdict['content'])
+    
+    final_html = f"""<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moroccan History Hub</title>
+    <link rel="stylesheet" type="text/css" href="../../static/styles.css">
+    
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <img src="../assets/saadi-flag.svg" alt="Logo">
+                <h1>Moroccan History Hub</h1> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index')}}">HOME</a></li>
+                <li><a href="../about.html">ABOUT</a></li>
+                <li><a href="#">ARTICLES</a></li>
+            </ul>
+        </nav>
+        <div class="articletxt">
+            <div class="main-article">
+                {title}
+                {author}
+                {tags}
+                {preview}
+                {img}
+                {content}
+            </div>
+        </div>
+        <footer>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><img src="../assets/facebook-logo.png"></a>
+                <a href="#" aria-label="YouTube"><img src="../assets/youtube-logo.png"></a>
+            </div>
+            <div class="credits">
+                Moroccan History Hub, 2024.
+            </div>
+        </footer>
+    </body>
+</html>
+"""
+    return final_html

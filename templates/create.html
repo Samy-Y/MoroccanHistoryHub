@@ -16,12 +16,13 @@
                 <textarea type="text" name="author-input" placeholder="Author"></textarea>
                 <textarea type="text" name="tags-input" placeholder="Tags (a,b,c,d...)"></textarea>
                 <textarea type="text" name="img-input" placeholder="Image (/static/assets)"></textarea>
+                <textarea type="text" name="preview-input" placeholder="Preview"></textarea>
                 <textarea type="text" name="content-input" id="cnt" placeholder="Content"></textarea>
             </div>
             <div class="ctrlbtns">
-                <button>📥 Save as Draft</button>
-                <button>🗞️ Publish</button>
-                <button type="submit">🗑️ Delete</button>
+                <input type="submit" name="action" value="📥 Save as Draft"></input>
+                <input type="submit" name="action" value="🗞️ Publish"></input>
+                <input type="submit" name="action" value="🗑️ Delete"></button>
                 <a href="{{url_for('admin')}}"><button>🏠 Return Home</button></a>
             </div>
         </form>
