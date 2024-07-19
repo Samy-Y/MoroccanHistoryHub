@@ -13,7 +13,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: linear-gradient(to bottom, #333, #313131);
+    background-color: #333;
     padding: 1rem;
     color: #fff;
     user-select: none;
@@ -30,7 +30,8 @@ nav {
 }
   
 .logo img {
-    height: 40px;
+    height: 10vh;
+    width: 10vh;
     margin-right: 10px;
 }
 
@@ -61,13 +62,15 @@ nav {
     color: #fff;
     text-decoration: none;
     padding:10%;
-    transition: 0.2s;
+    transition: 0.1s;
+    border-radius: 2vh;
 }
 
 .nav-links a:hover {
     background-color: #ffffff;
     color:#333;
-    transition: 0.2s
+    transition: 0.2s;
+    border-radius: 2vh;
 }
 
 .main-menu h1{
@@ -80,17 +83,27 @@ nav {
 }
 
 .welcome img{
-    height: 500px;
-    width: 100%;
-    object-fit: none;
-    object-position: center;
+    height:80vh;
+    width:100%;
+    object-fit: cover;
+    animation: fadein 0.75s;
+    animation-timing-function: cubic-bezier();
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0%;
+    }
+    to{
+        opacity: 100%;
+    }
 }
 
 .welcome h1 {
     font-family: 'DM Serif Display',serif;
     padding: 10px;
     border-radius: 3vh;
-    background-color: #3333336c;
+    text-shadow: 0px 10px 50px black, 0 0px 30px black, 0 0px 20px black;
     position: absolute;
     width: 60%;
     top: 50%;
@@ -102,7 +115,7 @@ nav {
     user-select: none;
     transition: 0.2s;
     animation: MoveDown 0.75s;
-    animation-timing-function: ease-out;
+    animation-timing-function: cubic-bezier();
 }
 
 @keyframes MoveDown{
@@ -115,12 +128,6 @@ nav {
         top:50%;
         opacity: 100%;
     }
-}
-
-.welcome h1:hover {
-    transition: 0.2s;
-    transform: translate(-47.5%,-50%);
-    scale: 1.05;
 }
 
 .books{

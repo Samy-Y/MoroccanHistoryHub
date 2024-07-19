@@ -20,14 +20,6 @@ def convert_markdown(txt):
         elif "- " in x[0:2]:
             a = x.replace("- ","<li>")
             line_txt[i] = a + "</li>"
-        # CUSTOM
-
-        elif x.startswith("§TAGS§ "):
-            a = x.replace("§TAGS§ ",'<p id="tags">')
-            line_txt[i] = a + "</p>"
-        elif x.startswith("§PREVIEW§ "):
-            a = x.replace("§PREVIEW§ ",'<p id="preview">')
-            line_txt[i] = a + "</p>"
 
     for i,x in enumerate(line_txt):
         if "**" in x:
@@ -65,7 +57,7 @@ def format_input(rawdict):
     tags += rawdict["tags"] + "</p>"
     img += " src='" + rawdict['image'] + "'>"
     preview += rawdict['preview'] + "</p>"
-    content += convert_markdown(rawdict['content'])
+    content += "<p>" + convert_markdown(rawdict['content']) + "</p>"
     
     final_html = f"""<!doctype html>
 <html>
@@ -79,7 +71,7 @@ def format_input(rawdict):
     <body>
         <nav>
             <div class="logo">
-                <img src="../assets/saadi-flag.svg" alt="Logo">
+                <img src="../assets/logo-white.svg" alt="Logo">
                 <h1>Moroccan History Hub</h1> 
             </div>
             <ul class="nav-links">
